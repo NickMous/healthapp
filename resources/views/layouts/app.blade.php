@@ -13,6 +13,10 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script
+            src="https://sentry.nickmous.com/js-sdk-loader/c52b0af968c705aa26066ba17bb93ad5.min.js"
+            crossorigin="anonymous"
+        ></script>
 
         <!-- Styles -->
         @livewireStyles
