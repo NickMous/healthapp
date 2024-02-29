@@ -1,0 +1,59 @@
+name: Deploy Laravel App to production
+
+env:
+  PUBLIC_PATH: "/var/www/html/com/healthapp"
+  BUILD_PATH: "/var/www/html/com/"
+  BUILD_REPO: "healthapp"
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Activate maintenance mode 🛠️
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.SSHPORT }}
+          script: |
+            cd ${{ env.PUBLIC_PATH }}
+            (php artisan down --secret="bypass-nick" --refresh="15") || true
+
+      - name: Deploy code to production 🚀
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.SSHPORT }}
+          script: |
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
+            cd ${{ env.PUBLIC_PATH }}
+            git pull
+            composer install --optimize-autoloader --no-dev --no-interaction --prefer-dist
+            php artisan clear-compiled
+            npm install
+            npm ci
+            php artisan migrate
+            php artisan key:generate
+            npm run build
+            php artisan optimize
+
+      - name: Deactivate maintenance mode 🛠️
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.SSHPORT }}
+          script: |
+            cd ${{ env.PUBLIC_PATH }}
+            php artisan up
