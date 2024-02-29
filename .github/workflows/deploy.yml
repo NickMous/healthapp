@@ -73,7 +73,6 @@ jobs:
             git pull
             composer install --optimize-autoloader --no-dev --no-interaction --prefer-dist
             php artisan clear-compiled
-            npm install
             npm ci
             php artisan migrate --force
             npm run build
