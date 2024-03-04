@@ -10,6 +10,6 @@ class Tuinhuisje extends Component
 {
     public function render()
     {
-        return view('livewire.tuinhuisje');
+        return view('livewire.tuinhuisje')->layout('layouts.guest');
     }
 }

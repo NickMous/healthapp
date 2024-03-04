@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', \App\Livewire\Tuinhuisje::class);
+Route::get('/', \App\Livewire\Tuinhuisje::class)->name('tuinhuisje');
 
 Route::middleware([
     'auth:sanctum',
