@@ -11,7 +11,7 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             }, colors: {
-                'dark_green': {
+                'dm-dark_green': {
                     DEFAULT: '#023122',
                     100: '#000a07',
                     200: '#01140e',
@@ -23,7 +23,7 @@ export default {
                     800: '#4ff8c2',
                     900: '#a7fbe1'
                 },
-                'mint_green': {
+                'dm-mint_green': {
                     DEFAULT: '#e1fef5',
                     100: '#035d40',
                     200: '#06ba81',
@@ -35,7 +35,7 @@ export default {
                     800: '#f3fffb',
                     900: '#f9fffd'
                 },
-                'sea_green': {
+                'dm-sea_green': {
                     DEFAULT: '#059467',
                     100: '#011e15',
                     200: '#023b29',
@@ -47,7 +47,7 @@ export default {
                     800: '#75fad0',
                     900: '#bafde7'
                 },
-                'celeste': {
+                'dm-celeste': {
                     DEFAULT: '#bffded',
                     100: '#035641',
                     200: '#05ac82',
@@ -59,7 +59,7 @@ export default {
                     800: '#e5fef8',
                     900: '#f2fffb'
                 },
-                'aquamarine': {
+                'dm-aquamarine': {
                     DEFAULT: '#07e9a1',
                     100: '#012f20',
                     200: '#035d40',
@@ -71,7 +71,7 @@ export default {
                     800: '#96fcdc',
                     900: '#cbfded'
                 },
-                'dm-mint_green': {
+                'mint_green': {
                     DEFAULT: '#cefdee',
                     100: '#04583d',
                     200: '#07b07b',
@@ -83,7 +83,7 @@ export default {
                     800: '#ebfef8',
                     900: '#f5fffc'
                 },
-                'dm-dark_green': {
+                'dark_green': {
                     DEFAULT: '#011e15',
                     100: '#000604',
                     200: '#000c08',
@@ -95,7 +95,7 @@ export default {
                     800: '#45f9c0',
                     900: '#a2fce0'
                 },
-                'dm-aquamarine': {
+                'aquamarine': {
                     DEFAULT: '#6bfacd',
                     100: '#024530',
                     200: '#058a60',
@@ -107,7 +107,7 @@ export default {
                     800: '#c4fdeb',
                     900: '#e1fef5'
                 },
-                'dm-brunswick_green': {
+                'brunswick_green': {
                     DEFAULT: '#024031',
                     100: '#000d0a',
                     200: '#011a13',
@@ -119,7 +119,7 @@ export default {
                     800: '#53fad0',
                     900: '#a9fce7'
                 },
-                'dm-accent-aquamarine': {
+                'accent-aquamarine': {
                     DEFAULT: '#16f8b0',
                     100: '#023424',
                     200: '#036949',
