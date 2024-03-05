@@ -131,6 +131,8 @@ export default {
                     800: '#a2fce0',
                     900: '#d0feef'
                 }
+            }, transitionProperty: {
+                'top': 'top',
             }
         },
     },

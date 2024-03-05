@@ -27,7 +27,7 @@
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body class="bg-mint_green dark:bg-dm-dark_green">
+    <body class="bg-mint_green dark:bg-dm-dark_green transition">
         <livewire:navigation-menu />
         <div class="font-sans text-gray-900 dark:text-gray-100 antialiased">
             {{ $slot }}
