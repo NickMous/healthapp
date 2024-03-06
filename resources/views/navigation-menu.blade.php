@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-mint_green dark:bg-dm-dark_green border-b border-gray-300 dark:border-dm-accent-aquamarine-100 sticky top-0">
+<nav x-data="{ open: false }" class="transition-colors bg-mint_green dark:bg-dm-dark_green border-b border-gray-300 dark:border-dm-accent-aquamarine-100 sticky top-0">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
