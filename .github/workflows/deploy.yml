@@ -87,4 +87,6 @@ jobs:
           port: ${{ secrets.SSHPORT }}
           script: |
             cd ${{ env.PUBLIC_PATH }}
+            php artisan route:clear
+            php artisan view:clear
             php artisan up
