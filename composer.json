@@ -15,7 +15,10 @@
         "livewire/livewire": "^3.0",
         "predis/predis": "^2.2",
         "sentry/sentry-laravel": "^4.2",
-        "spatie/laravel-permission": "^6.4"
+        "spatie/laravel-health": "^1.26",
+        "spatie/laravel-permission": "^6.4",
+        "spatie/security-advisories-health-check": "^1.1",
+        "srwiez/queue-size-health-check": "^1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

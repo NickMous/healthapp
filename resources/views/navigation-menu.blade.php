@@ -20,6 +20,21 @@
                             {{ __('Dashboard') }}
                         </x-nav-link>
                     @endif
+                    @role('super admin')
+                    <x-nav-dropdown align="left" width="48" :active="request()->routeIs('data.index') || request()->routeIs('health')">
+                        <x-slot name="trigger">
+                            App
+                        </x-slot>
+                        <x-slot name="content">
+                            <x-dropdown-link href="{{ route('data.index') }}" wire:navigate>
+                                {{ __('Data') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link href="{{ route('health') }}" wire:navigate>
+                                {{ __('App health') }}
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-nav-dropdown>
+                    @endrole
                 </div>
             </div>
 
@@ -101,12 +116,12 @@
                                     </div>
 
                                     <!-- Team Settings -->
-                                    <x-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
+                                    <x-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}" wire:navigate>
                                         {{ __('Team Settings') }}
                                     </x-dropdown-link>
 
                                     @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                                        <x-dropdown-link href="{{ route('teams.create') }}">
+                                        <x-dropdown-link href="{{ route('teams.create') }}" wire:navigate>
                                             {{ __('Create New Team') }}
                                         </x-dropdown-link>
                                     @endcan
@@ -157,12 +172,12 @@
                                     {{ __('Manage Account') }}
                                 </div>
 
-                                <x-dropdown-link href="{{ route('profile.show') }}">
+                                <x-dropdown-link href="{{ route('profile.show') }}" wire:navigate>
                                     {{ __('Profile') }}
                                 </x-dropdown-link>
 
                                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                                    <x-dropdown-link href="{{ route('api-tokens.index') }}">
+                                    <x-dropdown-link href="{{ route('api-tokens.index') }}" wire:navigate>
                                         {{ __('API Tokens') }}
                                     </x-dropdown-link>
                                 @endif
@@ -199,11 +214,11 @@
                             <x-slot name="content">
                                 <!-- Account Management -->
 
-                                <x-dropdown-link href="{{ route('login') }}">
+                                <x-dropdown-link href="{{ route('login') }}" wire:navigate>
                                     {{ __('Login') }}
                                 </x-dropdown-link>
 
-                                <x-dropdown-link href="{{ route('register') }}">
+                                <x-dropdown-link href="{{ route('register') }}" wire:navigate>
                                     {{ __('Register') }}
                                 </x-dropdown-link>
                             </x-slot>
@@ -225,7 +240,15 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+    <div class="block sm:hidden overflow-hidden"
+         x-show="open"
+         x-transition:enter="transition-[max-height] ease-in-out duration-300"
+         x-transition:enter-start="max-h-0"
+         x-transition:enter-end="max-h-[400px]"
+         x-transition:leave="transition-[max-height] ease-in-out duration-300"
+         x-transition:leave-start="max-h-[400px]"
+         x-transition:leave-end="max-h-0"
+    >
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="{{ route('tuinhuisje') }}" :active="request()->routeIs('tuinhuisje')">
                 {{ __('Home') }}
@@ -235,11 +258,26 @@
                     {{ __('Dashboard') }}
                 </x-responsive-nav-link>
             @endif
+            @role('super admin')
+            <x-response-nav-dropdown :active="request()->routeIs('data.index') || request()->routeIs('data.import') || request()->routeIs('health')">
+                <x-slot name="trigger">
+                    App
+                </x-slot>
+                <x-slot name="content">
+                    <x-responsive-nav-link href="{{ route('data.index') }}" :active="request()->routeIs('data.index') || request()->routeIs('data.import')">
+                        {{ __('Data') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('health') }}" :active="request()->routeIs('health')">
+                        {{ __('App health') }}
+                    </x-responsive-nav-link>
+                </x-slot>
+            </x-response-nav-dropdown>
+            @endrole
         </div>
 
         <!-- Responsive Settings Options -->
-        @if(Auth::check())
-            <div class="pt-4 pb-1 border-t border-gray-300 dark:border-gray-600">
+        <div class="pt-4 pb-1 border-t border-gray-300 dark:border-dm-accent-aquamarine-100">
+            @if(Auth::check())
                 <div class="flex items-center px-4">
                     @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                         <div class="shrink-0 me-3">
@@ -308,8 +346,17 @@
                         @endif
                     @endif
                 </div>
-            </div>
-        @endif
+            @else
+                <div class="pb-3 space-y-1">
+                    <x-responsive-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
+                        {{ __('Login') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
+                        {{ __('Register') }}
+                    </x-responsive-nav-link>
+                </div>
+            @endif
+        </div>
         <div class="pt-3 pb-3 space-y-1 border-t border-gray-300 dark:border-dm-accent-aquamarine-100">
             <button
                 class="relative overflow-hidden flex w-full ps-3 pe-4 py-2 border-l-4 border-transparent text-start text-base font-medium text-dark_green dark:text-dm-mint_green hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:outline-none focus:text-dark_green dark:focus:text-dm-mint_green focus:bg-sea_green dark:focus:bg-dm-aquamarine/30 focus:border-sea_green dark:focus:border-dm-aquamarine transition duration-150 ease-in-out"

@@ -1,6 +1,8 @@
 <?php
 
+use App\Livewire\Data;
 use Illuminate\Support\Facades\Route;
+use Spatie\Health\Http\Controllers\HealthCheckResultsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +25,13 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    Route::middleware(['role:super admin'])->group(function () {
+        Route::get('/health', HealthCheckResultsController::class)->name('health');
+        Route::prefix('data')->name('data.')->group(function () {
+            Route::get('', Data\Index::class)->name('index');
+            Route::get('/import', Data\Import::class)->name('import');
+            Route::get('/create', Data\Create::class)->name('create');
+            Route::get('/edit/{id}', Data\Edit::class)->name('edit');
+        });
+    });
 });

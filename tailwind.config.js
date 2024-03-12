@@ -133,6 +133,8 @@ export default {
                 }
             }, transitionProperty: {
                 'top': 'top',
+                'dropdown': 'margin, max-height',
+                'td-a': 'border-color, width',
             }
         },
     },
