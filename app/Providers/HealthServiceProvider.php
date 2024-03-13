@@ -7,7 +7,6 @@ use QueueSizeCheck\QueueSizeCheck;
 use Spatie\Health\Checks\Checks\CacheCheck;
 use Spatie\Health\Checks\Checks\DatabaseCheck;
 use Spatie\Health\Checks\Checks\OptimizedAppCheck;
-use Spatie\Health\Checks\Checks\QueueCheck;
 use Spatie\Health\Checks\Checks\RedisCheck;
 use Spatie\Health\Checks\Checks\RedisMemoryUsageCheck;
 use Spatie\Health\Checks\Checks\UsedDiskSpaceCheck;

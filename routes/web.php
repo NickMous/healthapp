@@ -1,20 +1,9 @@
 <?php
 
 use App\Livewire\Data;
-use App\Livewire\Notifications\Index;
+use App\Livewire\Notifications;
 use Illuminate\Support\Facades\Route;
 use Spatie\Health\Http\Controllers\HealthCheckResultsController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', \App\Livewire\Tuinhuisje::class)->name('tuinhuisje');
 
@@ -35,7 +24,7 @@ Route::middleware([
             Route::get('/edit/{id}', Data\Edit::class)->name('edit');
         });
         Route::prefix('notifications')->name('notifications.')->group(function () {
-            Route::get('', Index::class)->name('index');
+            Route::get('', Notifications\Index::class)->name('index');
         });
     });
 });
