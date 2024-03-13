@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Data;
+use App\Livewire\Notifications\Index;
 use Illuminate\Support\Facades\Route;
 use Spatie\Health\Http\Controllers\HealthCheckResultsController;
 
@@ -32,6 +33,9 @@ Route::middleware([
             Route::get('/import', Data\Import::class)->name('import');
             Route::get('/create', Data\Create::class)->name('create');
             Route::get('/edit/{id}', Data\Edit::class)->name('edit');
+        });
+        Route::prefix('notifications')->name('notifications.')->group(function () {
+            Route::get('', Index::class)->name('index');
         });
     });
 });
