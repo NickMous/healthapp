@@ -11,3 +11,8 @@ Sentry.init({
 Alpine.plugin(sticky);
 
 Livewire.start();
+
+Echo.private('App.Models.User.' + 1)
+    .notification((notification) => {
+        console.log(notification.type);
+    });
