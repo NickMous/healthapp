@@ -13,6 +13,7 @@ Echo.private('App.Models.User.' + 1)
         notificationIconDiv.classList.add('top-10');
         let notificationStep2 = setTimeout(() => {
             notificationInnerDiv.classList.add('w-72');
+            notificationInnerDiv.classList.remove('w-6');
             clearTimeout(notificationStep2);
             let notificationStep3 = setTimeout(() => {
                 notificationText.innerText = notification.title;
@@ -28,6 +29,7 @@ Echo.private('App.Models.User.' + 1)
                     let notificationStep5 = setTimeout(() => {
                         notificationTextDiv.classList.add('hidden');
                         notificationTextDiv.style.width = 'auto';
+                        notificationInnerDiv.classList.add('w-6');
                         notificationInnerDiv.classList.remove('w-72');
                         clearTimeout(notificationStep5);
                         let notificationStep6 = setTimeout(() => {
