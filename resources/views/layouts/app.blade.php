@@ -24,6 +24,9 @@
             crossorigin="anonymous"
         ></script>
         <script src="https://kit.fontawesome.com/c76ccd3424.js" crossorigin="anonymous"></script>
+        <script>
+            let user = {{ auth()->user()->id }};
+        </script>
 
         <!-- Styles -->
         @livewireStyles
