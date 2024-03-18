@@ -66,6 +66,7 @@ class Test extends Notification implements ShouldBroadcast
         Log::info('Broadcasting message');
         return new BroadcastMessage([
             'message' => $this->data,
+            'title' => 'Test Notification one two three please make it long',
         ]);
     }
 }

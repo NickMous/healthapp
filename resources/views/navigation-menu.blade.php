@@ -40,17 +40,13 @@
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 @if(Auth::check())
-                    <a href="{{ route('notifications.index') }}" class="inline-flex items-center overflow-hidden px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-dark_green dark:text-dm-mint_green bg-mint_green dark:bg-dm-dark_green hover:text-dark_green-600 dark:hover:text-dm-aquamarine hover:bg-mint_green hover:dark:bg-dm-dark_green focus:outline-none focus:bg-aquamarine dark:focus:bg-dm-brunswick_green active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150" wire:navigate>
-                        <div class="h-6 w-6 flex items-center justify-center relative">
-                            <div class="flex items-center justify-center w-6 h-6 absolute top-0">
+                    <a href="{{ route('notifications.index') }}" id="notificationButton" class="inline-flex items-center overflow-hidden px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-dark_green dark:text-dm-mint_green bg-mint_green dark:bg-dm-dark_green hover:text-dark_green-600 dark:hover:text-dm-aquamarine hover:bg-mint_green hover:dark:bg-dm-dark_green focus:outline-none focus:bg-aquamarine dark:focus:bg-dm-brunswick_green active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-500" wire:navigate>
+                        <div id="notificationInnerDiv" class="h-6 w-6 flex items-center justify-center relative transition-[width]">
+                            <div id="notificationIconDiv" class="flex items-center justify-center w-6 h-6 absolute top-0 transition-top duration-500">
                                 <i class="fa-regular fa-bell"></i>
                             </div>
-                        </div>
-                    </a>
-                    <a href="{{ route('notifications.index') }}" class="relative inline-flex items-center overflow-hidden px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-dark_green dark:text-dm-mint_green bg-mint_green dark:bg-dm-dark_green hover:text-dark_green-600 dark:hover:text-dm-aquamarine hover:bg-mint_green hover:dark:bg-dm-dark_green focus:outline-none focus:bg-aquamarine dark:focus:bg-dm-brunswick_green active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150" wire:navigate>
-                        <div class="h-6 w-6 flex items-center justify-center relative">
-                            <div class="flex items-center justify-center w-6 h-6 absolute top-8">
-                                <i class="fa-regular fa-bell"></i>
+                            <div id="notificationTextDiv" class="flex items-center justify-center h-6 absolute top-8 transition-top hidden">
+                                <p class="dark:text-dm-dark_green-600 truncate">The import of the NEVO dataset is complete</p>
                             </div>
                         </div>
                     </a>

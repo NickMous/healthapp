@@ -11,6 +11,7 @@
         "laravel/prompts": "^0.1.16",
         "laravel/reverb": "@beta",
         "laravel/sanctum": "^4.0",
+        "laravel/telescope": "^5.0",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.0",
         "predis/predis": "^2.2",
@@ -64,7 +65,7 @@
             "dev-master": "11.x-dev"
         },
         "laravel": {
-            "dont-discover": []
+            "dont-discover": ["laravel/telescope"]
         }
     },
     "config": {

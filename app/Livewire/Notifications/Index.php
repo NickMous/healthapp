@@ -6,6 +6,8 @@ use Livewire\Component;
 
 class Index extends Component
 {
+    protected $listeners = ['notification.received' => 'mount'];
+
     public $notifications;
 
     public function mount()
@@ -13,15 +15,21 @@ class Index extends Component
         $this->notifications = auth()->user()->notifications;
     }
 
-    public function markAsRead()
+    public function markAsRead($id)
     {
-        auth()->user()->notifications()->where('id', request('notification_id'))->update(['read_at' => now()]);
+//        dd($id);
+        auth()->user()->notifications()->where('id', $id)->update(['read_at' => now()]);
         $this->notifications = auth()->user()->notifications;
     }
 
     public function markAllAsRead()
     {
         auth()->user()->unreadNotifications->markAsRead();
+        $this->notifications = auth()->user()->notifications;
+    }
+
+    public function delete($id) {
+        auth()->user()->notifications()->where('id', $id)->delete();
         $this->notifications = auth()->user()->notifications;
     }
 
