@@ -22,8 +22,7 @@ export default {
                     700: '#09e19d',
                     800: '#4ff8c2',
                     900: '#a7fbe1'
-                },
-                'mint_green': {
+                }, 'mint_green': {
                     DEFAULT: '#e1fef5',
                     100: '#035d40',
                     200: '#06ba81',
@@ -34,8 +33,7 @@ export default {
                     700: '#edfef9',
                     800: '#f3fffb',
                     900: '#f9fffd'
-                },
-                'sea_green': {
+                }, 'sea_green': {
                     DEFAULT: '#059467',
                     100: '#011e15',
                     200: '#023b29',
@@ -46,8 +44,7 @@ export default {
                     700: '#30f8b8',
                     800: '#75fad0',
                     900: '#bafde7'
-                },
-                'celeste': {
+                }, 'celeste': {
                     DEFAULT: '#bffded',
                     100: '#035641',
                     200: '#05ac82',
@@ -58,8 +55,7 @@ export default {
                     700: '#d8fef4',
                     800: '#e5fef8',
                     900: '#f2fffb'
-                },
-                'aquamarine': {
+                }, 'aquamarine': {
                     DEFAULT: '#07e9a1',
                     100: '#012f20',
                     200: '#035d40',
@@ -70,8 +66,7 @@ export default {
                     700: '#62faca',
                     800: '#96fcdc',
                     900: '#cbfded'
-                },
-                'dm-mint_green': {
+                }, 'dm-mint_green': {
                     DEFAULT: '#cefdee',
                     100: '#04583d',
                     200: '#07b07b',
@@ -82,8 +77,7 @@ export default {
                     700: '#e2fef5',
                     800: '#ebfef8',
                     900: '#f5fffc'
-                },
-                'dm-dark_green': {
+                }, 'dm-dark_green': {
                     DEFAULT: '#011e15',
                     100: '#000604',
                     200: '#000c08',
@@ -94,8 +88,7 @@ export default {
                     700: '#07d896',
                     800: '#45f9c0',
                     900: '#a2fce0'
-                },
-                'dm-aquamarine': {
+                }, 'dm-aquamarine': {
                     DEFAULT: '#6bfacd',
                     100: '#024530',
                     200: '#058a60',
@@ -106,8 +99,7 @@ export default {
                     700: '#a6fce1',
                     800: '#c4fdeb',
                     900: '#e1fef5'
-                },
-                'dm-brunswick_green': {
+                }, 'dm-brunswick_green': {
                     DEFAULT: '#024031',
                     100: '#000d0a',
                     200: '#011a13',
@@ -118,8 +110,7 @@ export default {
                     700: '#07ecb3',
                     800: '#53fad0',
                     900: '#a9fce7'
-                },
-                'dm-accent-aquamarine': {
+                }, 'dm-accent-aquamarine': {
                     DEFAULT: '#16f8b0',
                     100: '#023424',
                     200: '#036949',
@@ -132,11 +123,8 @@ export default {
                     900: '#d0feef'
                 }
             }, transitionProperty: {
-                'top': 'top',
+                'top': 'top', 'dropdown': 'margin, max-height', 'td-a': 'border-color, width',
             }
         },
-    },
-    darkMode: 'selector',
-    plugins: [forms, typography],
-}
-;
+    }, darkMode: 'selector', plugins: [forms, typography],
+};

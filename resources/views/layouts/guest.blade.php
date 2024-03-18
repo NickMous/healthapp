@@ -23,6 +23,7 @@
             src="https://sentry.nickmous.com/js-sdk-loader/c52b0af968c705aa26066ba17bb93ad5.min.js"
             crossorigin="anonymous"
         ></script>
+        <script src="https://kit.fontawesome.com/c76ccd3424.js" crossorigin="anonymous"></script>
 
         <!-- Styles -->
         @livewireStyles
@@ -33,6 +34,6 @@
             {{ $slot }}
         </div>
 
-        @livewireScripts
+        @livewireScriptConfig
     </body>
 </html>

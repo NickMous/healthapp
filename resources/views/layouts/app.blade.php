@@ -11,7 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ $title ?? 'No page title' }} | {{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -23,6 +23,7 @@
             src="https://sentry.nickmous.com/js-sdk-loader/c52b0af968c705aa26066ba17bb93ad5.min.js"
             crossorigin="anonymous"
         ></script>
+        <script src="https://kit.fontawesome.com/c76ccd3424.js" crossorigin="anonymous"></script>
 
         <!-- Styles -->
         @livewireStyles
@@ -35,7 +36,7 @@
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-celeste dark:bg-dm-brunswick_green shadow">
+                <header>
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
@@ -50,6 +51,6 @@
 
         @stack('modals')
 
-        @livewireScripts
+        @livewireScriptConfig
     </body>
 </html>
