@@ -124,7 +124,7 @@ class Update extends Component
         $this->source->columns = $columns;
         $this->source->save();
 
-        $import = new \App\Jobs\ProcessImport($this->source, $this->path);
+        $import = new \App\Jobs\ProcessImport($this->source, auth()->user(), $this->path);
         dispatch($import);
 
         session()->flash('flash.banner', 'Import queued for processing');

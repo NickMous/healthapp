@@ -22,7 +22,6 @@ class Test extends Notification implements ShouldBroadcast
      */
     public function __construct($data)
     {
-        Log::info('Creating notification');
         $this->data = $data;
     }
 
@@ -57,13 +56,11 @@ class Test extends Notification implements ShouldBroadcast
 
     public function broadcastOn(): PrivateChannel
     {
-        Log::info('Broadcasting on channel');
         return new PrivateChannel('App.Models.User.' . 1);
     }
 
     public function toBroadcast(object $notifiable): BroadcastMessage
     {
-        Log::info('Broadcasting message');
         return new BroadcastMessage([
             'message' => $this->data,
             'title' => 'Test Notification one two three please make it long',

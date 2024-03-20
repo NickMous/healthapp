@@ -4,6 +4,10 @@ namespace App\Jobs;
 
 use App\Models\FoodData;
 use App\Models\FoodDataSources;
+use App\Models\User;
+use App\Notifications\Data\Import\Done;
+use App\Notifications\Data\Import\FileDoesNotExist;
+use App\Notifications\Data\Import\OldDataRemoved;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -18,14 +22,17 @@ class ProcessImport implements ShouldQueue
 
     public $source;
 
+    public $user;
+
     public $file;
 
     /**
      * Create a new job instance.
      */
-    public function __construct(FoodDataSources $source, $file)
+    public function __construct(FoodDataSources $source, User $user, $file)
     {
         $this->source = $source;
+        $this->user = $user;
         $this->file = $file;
     }
 
@@ -35,12 +42,13 @@ class ProcessImport implements ShouldQueue
     public function handle(): void
     {
         if (!Storage::exists($this->file)) {
-            Log::error('File does not exist: ' . $this->file);
+            $this->user->notify(new FileDoesNotExist($this->source));
             return;
         }
 
         if (FoodData::where('food_data_source_id', $this->source->id)->count() > 0) {
             FoodData::where('food_data_source_id', $this->source->id)->delete();
+            $this->user->notify(new OldDataRemoved($this->source));
         }
 
         $file = Storage::get($this->file);
@@ -66,6 +74,10 @@ class ProcessImport implements ShouldQueue
             $foodData->notes = $columns[json_decode($this->source->columns)->notes];
             $foodData->save();
         }
+
+        $this->source->update(['updated_at' => now()]);
+        Log::debug($this->user);
+        $this->user->notify(new Done($this->source));
     }
 
     private function getNumber($string): float
