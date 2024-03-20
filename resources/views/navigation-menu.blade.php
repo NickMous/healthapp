@@ -45,7 +45,13 @@
                     <a href="{{ route('notifications.index') }}" id="notificationButton" class="inline-flex items-center overflow-hidden px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-dark_green dark:text-dm-mint_green bg-mint_green dark:bg-dm-dark_green hover:text-dark_green-600 dark:hover:text-dm-aquamarine hover:bg-mint_green hover:dark:bg-dm-dark_green focus:outline-none focus:bg-aquamarine dark:focus:bg-dm-brunswick_green active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-500" wire:navigate>
                         <div id="notificationInnerDiv" class="h-6 w-6 flex items-center justify-center relative transition-[width]">
                             <div id="notificationIconDiv" class="flex items-center justify-center w-6 h-6 absolute top-0 transition-top duration-500">
-                                <i class="fa-regular fa-bell"></i>
+                                @if(auth()->user()->notifications()->unread()->count() > 0)
+                                    <i class="fa-regular fa-bell !hidden notificationEmpty"></i>
+                                    <i class="fa-solid fa-bell notificationFull"></i>
+                                @else
+                                    <i class="fa-regular fa-bell notificationEmpty"></i>
+                                    <i class="fa-solid fa-bell !hidden notificationFull"></i>
+                                @endif
                             </div>
                             <div id="notificationTextDiv" class="flex items-center justify-center h-6 absolute top-8 transition-top hidden">
                                 <p class="dark:text-dm-dark_green-600 truncate">The import of the NEVO dataset is complete</p>

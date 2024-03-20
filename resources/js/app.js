@@ -1,7 +1,7 @@
 import './bootstrap';
-import './notifications.js';
 import { Livewire, Alpine } from '../../vendor/livewire/livewire/dist/livewire.esm';
 import sticky from 'alpinejs-sticky';
+import './notifications.js';
 
 import * as Sentry from "@sentry/browser";
 

@@ -20,6 +20,7 @@ Route::middleware([
         Route::prefix('data')->name('data.')->group(function () {
             Route::get('', Data\Index::class)->name('index');
             Route::get('/import', Data\Import::class)->name('import');
+            Route::get('/import/{id}', Data\Import\Update::class)->name('import.update');
             Route::get('/create', Data\Create::class)->name('create');
             Route::get('/edit/{id}', Data\Edit::class)->name('edit');
         });

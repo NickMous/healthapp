@@ -38,7 +38,9 @@
                                     <td class="py-2 hidden sm:table-cell"><a class="relative before:w-0 before:border-b before:border-dark_green dark:before:border-dm-mint_green before:block before:h-full before:bottom-0 before:absolute before:transition-td-a before:duration-500 hover:before:w-full hover:text-dark_green-600 dark:hover:text-dm-mint_green-400 hover:before:border-dark_green-600 dark:hover:before:border-dm-mint_green-400 transition duration-500" href="{{ $source->url }}">{{ $source->url }}</a></td>
                                     <td class="py-2">{{ $source->updated_at }}</td>
                                     <td class="py-2 hidden sm:table-cell">
-                                        <a href="{{ route('data.edit', ['id' => $source->id]) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="{{ route('data.import.update', ['id' => $source->id]) }}" class="me-2" wire:navigate><i class="fa-solid fa-file-import"></i></a>
+                                        <a href="{{ route('data.edit', ['id' => $source->id]) }}" class="me-2" wire:navigate><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <button wire:click="delete({{ $source->id }})"><i class="fa-solid fa-trash text-red-500"></i></button>
                                     </td>
                                 </tr>
                             @endforeach

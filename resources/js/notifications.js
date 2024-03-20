@@ -1,7 +1,7 @@
 if (user) {
     Echo.private('App.Models.User.' + user)
         .notification((notification) => {
-            console.log(notification);
+            Livewire.dispatch('notificationReceived', notification);
             let notificationButton = document.getElementById('notificationButton');
             let notificationInnerDiv = document.getElementById('notificationInnerDiv');
             let notificationIconDiv = document.getElementById('notificationIconDiv');
@@ -22,6 +22,8 @@ if (user) {
                     notificationTextDiv.classList.remove('hidden');
                     notificationTextDiv.classList.add('top-0');
                     notificationTextDiv.classList.remove('top-8');
+                    document.querySelector('.notificationEmpty').classList.add('!hidden');
+                    document.querySelector('.notificationFull').classList.remove('!hidden');
                     clearTimeout(notificationStep3);
                     let notificationStep4 = setTimeout(() => {
                         notificationTextDiv.classList.add('top-8');

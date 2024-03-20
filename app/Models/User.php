@@ -16,6 +16,7 @@ use Spatie\Permission\Traits\HasRoles;
 #[ObservedBy(UserObserver::class)]
 class User extends Authenticatable implements MustVerifyEmail
 {
+
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
