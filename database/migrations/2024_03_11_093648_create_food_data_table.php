@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('food_data', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('food_data_source_id')->constrained();
+            $table->foreignId('food_data_source_id')->constrained()->cascadeOnDelete();
             $table->string('name_original')->nullable();
             $table->string('name');
             $table->string('food_group')->nullable();

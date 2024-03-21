@@ -67,6 +67,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.SSHPORT }}
           script: |
+            php artisan optimize:clear
             export NVM_DIR=~/.nvm
             source ~/.nvm/nvm.sh
             cd ${{ env.PUBLIC_PATH }}
@@ -76,7 +77,12 @@ jobs:
             npm ci
             php artisan migrate --force
             npm run build
-            php artisan optimize
+            php artisan event:cache
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+            php artisan queue:restart
+            php artisan reverb:restart
 
       - name: Deactivate maintenance mode 🛠️
         uses: appleboy/ssh-action@master

@@ -2,14 +2,18 @@
 
 namespace App\Livewire\Notifications;
 
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Index extends Component
 {
-    protected $listeners = ['notification.received' => 'mount'];
-
     public $notifications;
 
+    public function refresh() {
+        $this->notifications = auth()->user()->notifications;
+    }
+
+    #[On('notificationReceived')]
     public function mount()
     {
         $this->notifications = auth()->user()->notifications;
@@ -30,6 +34,11 @@ class Index extends Component
 
     public function delete($id) {
         auth()->user()->notifications()->where('id', $id)->delete();
+        $this->notifications = auth()->user()->notifications;
+    }
+
+    public function deleteAll() {
+        auth()->user()->notifications()->delete();
         $this->notifications = auth()->user()->notifications;
     }
 
