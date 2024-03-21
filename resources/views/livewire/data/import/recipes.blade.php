@@ -2,8 +2,7 @@
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold text-4xl text-dark_green dark:text-dm-mint_green leading-tight">
-                {{ __('Import data
-') }}
+                {{ __('Import recipes') }}
             </h2>
             <x-link-button href="{{ route('data.import') }}" wire:navigate>
                 {{ __('Back') }}
@@ -74,6 +73,11 @@
                         <x-input-error for="version" class="mt-2"/>
                     </div>
                 </div>
+                    <div class="flex flex-col space-y-2 py-2 px-3 col-start-1 col-end-8">
+                        <x-switch id="canUseOtherSources" wire:model="canUseOtherSources">
+                            {{ __('Can use other sources') }}
+                        </x-switch>
+                    </div>
             </x-slot:form>
             <x-slot:actions>
                 <x-button class="ml-4">

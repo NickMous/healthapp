@@ -23,4 +23,9 @@ class FoodDataSources extends Model
     {
         return $this->hasMany(FoodData::class);
     }
+
+    public function foodRecipes()
+    {
+        return $this->hasMany(FoodRecipes::class);
+    }
 }

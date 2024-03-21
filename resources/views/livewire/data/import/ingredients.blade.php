@@ -2,8 +2,7 @@
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold text-4xl text-dark_green dark:text-dm-mint_green leading-tight">
-                {{ __('Import data
-') }}
+                {{ __('Import ingredients') }}
             </h2>
             <x-link-button href="{{ route('data.import') }}" wire:navigate>
                 {{ __('Back') }}
@@ -64,7 +63,7 @@
                     <x-input-error for="serving_g" class="mt-2"/>
                 </div>
                 <div class="flex flex-col space-y-2 py-2 px-3 ">
-                    <x-label for="calories" :value="__('Calories')"></x-label>
+                    <x-label for="calories" :value="__('Calories (kcal)')"></x-label>
                     <x-select id="calories" wire:model="calories">
                         <option value="">Select</option>
                         @foreach($columns as $id => $value)

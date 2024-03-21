@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('food_recipes_food_data', function (Blueprint $table) {
+        Schema::create('food_data_food_recipes', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\FoodRecipes::class);
-            $table->foreignIdFor(\App\Models\FoodData::class);
+            $table->foreignIdFor(\App\Models\FoodRecipes::class)->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\FoodData::class)->cascadeOnDelete();
             $table->integer('amount');
             $table->timestamps();
         });
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('food_recipes_food_data');
+        Schema::dropIfExists('food_data_food_recipes');
     }
 };

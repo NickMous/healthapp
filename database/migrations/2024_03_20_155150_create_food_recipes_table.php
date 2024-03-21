@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('food_recipes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('source_id')->constrained('food_data_sources')->cascadeOnDelete();
             $table->string('name');
             $table->timestamps();
         });

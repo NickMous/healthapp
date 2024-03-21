@@ -35,7 +35,7 @@ class Import extends Component
 
     public function delete($id)
     {
-        FoodDataSources::find($id)->delete()->cascade();
+        FoodDataSources::find($id)->delete();
         $this->data = FoodDataSources::all();
     }
 }
