@@ -93,7 +93,6 @@ class Ingredients extends Component
     {
         $this->validate([
             'name' => 'required',
-            'foodgroup' => 'required',
             'serving_g' => 'required',
             'calories' => 'required',
             'protein_g' => 'required',
@@ -102,8 +101,6 @@ class Ingredients extends Component
             'fiber_g' => 'required',
             'sugar_g' => 'required',
             'carbohydrates_g' => 'required',
-            'notes' => 'required',
-            'version' => 'required',
         ]);
 
         $columns = [

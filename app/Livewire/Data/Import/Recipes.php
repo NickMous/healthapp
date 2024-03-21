@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Data\Import;
 
+use App\Jobs\Import\ProcessRecipesImport;
 use App\Models\FoodDataSources;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
@@ -45,6 +46,7 @@ class Recipes extends Component
             $this->ingredients = json_decode($this->source->recipes_columns)->ingredients;
             $this->amount = json_decode($this->source->recipes_columns)->amount;
             $this->version = json_decode($this->source->recipes_columns)->version;
+            $this->canUseOtherSources = (bool) json_decode($this->source->recipes_columns)->canUseOtherSources;
         }
     }
 
@@ -67,9 +69,28 @@ class Recipes extends Component
     public function queueImport()
     {
         $this->validate([
-            ''
+            'name' => 'required',
+            'ingredients' => 'required',
+            'amount' => 'required',
+            'version' => 'required',
         ]);
 
+        $columns = [
+            'name' => $this->name,
+            'ingredients' => $this->ingredients,
+            'amount' => $this->amount,
+            'version' => $this->version,
+            'canUseOtherSources' => (bool) $this->canUseOtherSources,
+        ];
+
+        $this->source->recipes_columns = json_encode($columns);
+        $this->source->save();
+
         ProcessRecipesImport::dispatch($this->source, auth()->user(), $this->path);
+
+        session()->flash('flash.banner', 'Your import has been queued!');
+        session()->flash('flash.bannerStyle', 'success');
+
+        return $this->redirect(route('data.index'), navigate: true);
     }
 }

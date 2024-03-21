@@ -37,7 +37,7 @@
                                     <td class="py-2 hidden sm:table-cell">{{ $source->recipes_version }}</td>
                                     <td class="py-2 hidden sm:table-cell">{{ $source->description }}</td>
                                     <td class="py-2 hidden sm:table-cell">{{ $source->file_type }}</td>
-                                    <td class="py-2 hidden sm:table-cell"><a class="relative before:w-0 before:border-b before:border-dark_green dark:before:border-dm-mint_green before:block before:h-full before:bottom-0 before:absolute before:transition-td-a before:duration-500 hover:before:w-full hover:text-dark_green-600 dark:hover:text-dm-mint_green-400 hover:before:border-dark_green-600 dark:hover:before:border-dm-mint_green-400 transition duration-500" href="{{ $source->url }}">{{ $source->url }}</a></td>
+                                    <td class="py-2 hidden sm:table-cell"><a class="relative before:w-0 before:border-b before:border-dark_green dark:before:border-dm-mint_green before:block before:h-full before:bottom-0 before:absolute before:transition-td-a before:duration-500 hover:before:w-full hover:text-dark_green-600 dark:hover:text-dm-mint_green-400 hover:before:border-dark_green-600 dark:hover:before:border-dm-mint_green-400 transition duration-500" href="{{ $source->url }}" target="_blank">{{ $source->url }}</a></td>
                                     <td class="py-2">{{ $source->updated_at }}</td>
                                     <td class="py-2 hidden sm:table-cell">
                                         <button wire:click="createModal({{ $source->id }})" class="me-2"><i class="fa-solid fa-file-import"></i></button>

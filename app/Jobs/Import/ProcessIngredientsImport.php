@@ -62,7 +62,7 @@ class ProcessIngredientsImport implements ShouldQueue
             $foodData = new \App\Models\FoodData;
             $foodData->food_data_source_id = $this->source->id;
             $foodData->name = $columns[json_decode($this->source->ingredients_columns)->name];
-            $foodData->food_group = $columns[json_decode($this->source->ingredients_columns)->foodgroup];
+            $foodData->food_group = json_decode($this->source->ingredients_columns)->foodgroup ? $columns[json_decode($this->source->ingredients_columns)->foodgroup] : null;
             $foodData->serving_g = $this->getNumber($columns[json_decode($this->source->ingredients_columns)->serving_g]);
             $foodData->energy_kcal = $this->getNumber($columns[json_decode($this->source->ingredients_columns)->calories]);
             $foodData->protein_g = $this->getNumber($columns[json_decode($this->source->ingredients_columns)->protein_g]);
@@ -71,15 +71,14 @@ class ProcessIngredientsImport implements ShouldQueue
             $foodData->fiber_g = $this->getNumber($columns[json_decode($this->source->ingredients_columns)->fiber_g]);
             $foodData->sugar_g = $this->getNumber($columns[json_decode($this->source->ingredients_columns)->sugar_g]);
             $foodData->carbohydrates_g = $this->getNumber($columns[json_decode($this->source->ingredients_columns)->carbohydrates_g]);
-            $foodData->notes = $columns[json_decode($this->source->ingredients_columns)->notes];
+            $foodData->notes = json_decode($this->source->ingredients_columns)->notes ? $columns[json_decode($this->source->ingredients_columns)->notes] : null;
             $foodData->save();
         }
 
         $source = FoodDataSources::find($this->source->id);
-        $source->ingredients_version = str_getcsv($rows[1], $this->source->column_delimiter)[json_decode($this->source->ingredients_columns)->version];
+        $source->ingredients_version = json_decode($this->source->ingredients_columns)->version ? str_getcsv($rows[1], $this->source->column_delimiter)[json_decode($this->source->ingredients_columns)->version] : 'Not Specified';
         $source->updated_at = now();
         $source->save();
-        Log::debug($this->user);
         $this->user->notify(new Done($this->source));
     }
 
