@@ -13,6 +13,16 @@ class Import extends Component
 
     public $data = [];
 
+    public $showModal = false;
+
+    public $modalId = 0;
+
+    public function createModal($id)
+    {
+        $this->modalId = $id;
+        $this->showModal = true;
+    }
+
     public function mount()
     {
         $this->data = FoodDataSources::all();

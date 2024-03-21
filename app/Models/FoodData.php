@@ -34,4 +34,9 @@ class FoodData extends Model
     {
         return $this->energy_kcal * 4.184;
     }
+
+    public function foodRecipes()
+    {
+        return $this->belongsToMany(FoodRecipes::class);
+    }
 }

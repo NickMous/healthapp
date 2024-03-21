@@ -54,7 +54,7 @@
                                 @endif
                             </div>
                             <div id="notificationTextDiv" class="flex items-center justify-center h-6 absolute top-8 transition-top hidden">
-                                <p class="dark:text-dm-dark_green-600 truncate">The import of the NEVO dataset is complete</p>
+                                <i></i><p class="dark:text-dm-dark_green-600 truncate">The import of the NEVO dataset is complete</p>
                             </div>
                         </div>
                     </a>

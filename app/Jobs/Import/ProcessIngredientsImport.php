@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\Import;
 
 use App\Models\FoodData;
 use App\Models\FoodDataSources;
@@ -16,7 +16,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
-class ProcessImport implements ShouldQueue
+class ProcessIngredientsImport implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -61,21 +61,24 @@ class ProcessImport implements ShouldQueue
 
             $foodData = new \App\Models\FoodData;
             $foodData->food_data_source_id = $this->source->id;
-            $foodData->name = $columns[json_decode($this->source->columns)->name];
-            $foodData->food_group = $columns[json_decode($this->source->columns)->foodgroup];
-            $foodData->serving_g = $this->getNumber($columns[json_decode($this->source->columns)->serving_g]);
-            $foodData->energy_kcal = $this->getNumber($columns[json_decode($this->source->columns)->calories]);
-            $foodData->protein_g = $this->getNumber($columns[json_decode($this->source->columns)->protein_g]);
-            $foodData->fat_g = $this->getNumber($columns[json_decode($this->source->columns)->fat_g]);
-            $foodData->water_g = $this->getNumber($columns[json_decode($this->source->columns)->water_g]);
-            $foodData->fiber_g = $this->getNumber($columns[json_decode($this->source->columns)->fiber_g]);
-            $foodData->sugar_g = $this->getNumber($columns[json_decode($this->source->columns)->sugar_g]);
-            $foodData->carbohydrates_g = $this->getNumber($columns[json_decode($this->source->columns)->carbohydrates_g]);
-            $foodData->notes = $columns[json_decode($this->source->columns)->notes];
+            $foodData->name = $columns[json_decode($this->source->ingredients_columns)->name];
+            $foodData->food_group = $columns[json_decode($this->source->ingredients_columns)->foodgroup];
+            $foodData->serving_g = $this->getNumber($columns[json_decode($this->source->ingredients_columns)->serving_g]);
+            $foodData->energy_kcal = $this->getNumber($columns[json_decode($this->source->ingredients_columns)->calories]);
+            $foodData->protein_g = $this->getNumber($columns[json_decode($this->source->ingredients_columns)->protein_g]);
+            $foodData->fat_g = $this->getNumber($columns[json_decode($this->source->ingredients_columns)->fat_g]);
+            $foodData->water_g = $this->getNumber($columns[json_decode($this->source->ingredients_columns)->water_g]);
+            $foodData->fiber_g = $this->getNumber($columns[json_decode($this->source->ingredients_columns)->fiber_g]);
+            $foodData->sugar_g = $this->getNumber($columns[json_decode($this->source->ingredients_columns)->sugar_g]);
+            $foodData->carbohydrates_g = $this->getNumber($columns[json_decode($this->source->ingredients_columns)->carbohydrates_g]);
+            $foodData->notes = $columns[json_decode($this->source->ingredients_columns)->notes];
             $foodData->save();
         }
 
-        $this->source->update(['updated_at' => now()]);
+        $source = FoodDataSources::find($this->source->id);
+        $source->ingredients_version = str_getcsv($rows[1], $this->source->column_delimiter)[json_decode($this->source->ingredients_columns)->version];
+        $source->updated_at = now();
+        $source->save();
         Log::debug($this->user);
         $this->user->notify(new Done($this->source));
     }

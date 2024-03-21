@@ -12,10 +12,10 @@
     </x-slot>
     <x-form-block submit="filechosen">
         <x-slot:form>
-            <div class="flex flex-col space-y-4">
+            <div class="flex flex-col space-y-4 col-start-1 col-end-7">
                 <div class="flex flex-col space-y-2">
                     <x-label for="file" :value="__('File')"></x-label>
-                    <label for="file" class="flex items-center justify-center w-full h-12 px-4 text-sm text-white bg-dark_green rounded-lg cursor-pointer hover:bg-dark_green-600 transition">
+                    <label for="file" class="flex items-center justify-center w-max h-12 px-4 text-sm text-white bg-dark_green rounded-lg cursor-pointer hover:bg-dark_green-600 transition">
                         <span class="text-base text-dm-mint_green">{{ $file ? $file->getClientOriginalName() : __('Upload a file') }}</span>
                     </label>
                     <x-input id="file" type="file" wire:model="file" class="hidden"/>

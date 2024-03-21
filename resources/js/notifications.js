@@ -22,10 +22,10 @@ function showNextNotification() {
     let notificationIconDiv = document.getElementById('notificationIconDiv');
     let notificationTextDiv = document.getElementById('notificationTextDiv');
     let notificationText = notificationTextDiv.querySelector('p');
+    let notificationIcon = notificationTextDiv.querySelector('i');
     let href = notificationButton.href;
     let notification = notificationQueue[0];
     notificationButton.href = notification.url;
-    console.log(notification.status);
     if (notification.status == 'success') {
         notificationButton.classList.add('dark:bg-dm-aquamarine', 'dark:hover:bg-dm-dark_green-700', 'bg-sea_green', 'hover:bg-mint_green-300');
     } else if (notification.status == 'error') {
@@ -38,6 +38,7 @@ function showNextNotification() {
     let notificationStep2 = setTimeout(() => {
         notificationInnerDiv.classList.add('w-72');
         notificationInnerDiv.classList.remove('w-6');
+        notificationIcon.classList = notification.icon + ' me-2 dark:text-dm-dark_green-600';
         clearTimeout(notificationStep2);
         let notificationStep3 = setTimeout(() => {
             notificationText.innerText = notification.title;
@@ -72,7 +73,6 @@ function showNextNotification() {
                         notificationButton.href = href;
                         notificationQueue.shift();
                         if (notificationQueue.length > 0) {
-                            console.log(notificationQueue);
                             showNextNotification();
                         } else {
                             notificationRunning = false;

@@ -9,7 +9,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 
 #[Title('Import Data')]
-class Update extends Component
+class Ingredients extends Component
 {
 
     use WithFileUploads;
@@ -50,26 +50,26 @@ class Update extends Component
     {
         $id = request()->id;
         $this->source = FoodDataSources::find($id);
-        if (json_decode($this->source->columns)) {
-            $this->name = json_decode($this->source->columns)->name;
-            $this->foodgroup = json_decode($this->source->columns)->foodgroup;
-            $this->serving_g = json_decode($this->source->columns)->serving_g;
-            $this->calories = json_decode($this->source->columns)->calories;
-            $this->protein_g = json_decode($this->source->columns)->protein_g;
-            $this->fat_g = json_decode($this->source->columns)->fat_g;
-            $this->water_g = json_decode($this->source->columns)->water_g;
-            $this->fiber_g = json_decode($this->source->columns)->fiber_g;
-            $this->sugar_g = json_decode($this->source->columns)->sugar_g;
-            $this->carbohydrates_g = json_decode($this->source->columns)->carbohydrates_g;
-            $this->notes = json_decode($this->source->columns)->notes;
-            $this->version = json_decode($this->source->columns)->version;
+        if (json_decode($this->source->ingredients_columns)) {
+            $this->name = json_decode($this->source->ingredients_columns)->name;
+            $this->foodgroup = json_decode($this->source->ingredients_columns)->foodgroup;
+            $this->serving_g = json_decode($this->source->ingredients_columns)->serving_g;
+            $this->calories = json_decode($this->source->ingredients_columns)->calories;
+            $this->protein_g = json_decode($this->source->ingredients_columns)->protein_g;
+            $this->fat_g = json_decode($this->source->ingredients_columns)->fat_g;
+            $this->water_g = json_decode($this->source->ingredients_columns)->water_g;
+            $this->fiber_g = json_decode($this->source->ingredients_columns)->fiber_g;
+            $this->sugar_g = json_decode($this->source->ingredients_columns)->sugar_g;
+            $this->carbohydrates_g = json_decode($this->source->ingredients_columns)->carbohydrates_g;
+            $this->notes = json_decode($this->source->ingredients_columns)->notes;
+            $this->version = json_decode($this->source->ingredients_columns)->version;
         }
     }
 
     #[Layout('layouts.app')]
     public function render()
     {
-        return view('livewire.data.import.update');
+        return view('livewire.data.import.ingredients');
     }
 
     public function filechosen()
@@ -78,7 +78,7 @@ class Update extends Component
             'file' => 'required|mimes:csv,txt',
         ]);
 
-        $path = $this->file->store('import');
+        $path = $this->file->store('ingredients');
 
         $this->path = $path;
 
@@ -121,10 +121,10 @@ class Update extends Component
             'version' => $this->version,
         ];
 
-        $this->source->columns = $columns;
+        $this->source->ingredients_columns = $columns;
         $this->source->save();
 
-        $import = new \App\Jobs\ProcessImport($this->source, auth()->user(), $this->path);
+        $import = new \App\Jobs\Import\ProcessIngredientsImport($this->source, auth()->user(), $this->path);
         dispatch($import);
 
         session()->flash('flash.banner', 'Import queued for processing');
